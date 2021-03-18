@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== "production") {
 
 const express = require("express");
 
+const articleRoutes = require("./routes/articles");
 const ExpressError = require("./utils/ExpressError");
 
 const app = express();
@@ -11,9 +12,7 @@ const PORT = 3000;
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res, next) => {
-  res.render("index");
-});
+app.use(articleRoutes);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found", 404));
