@@ -1,5 +1,5 @@
-# APIDesign
-DevCamper API 
+# Blog
+Markdown Blog 
 
 > Blog Website with Markdown for adding Blog Posts
 
