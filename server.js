@@ -1,8 +1,13 @@
-if(process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
-  }
-
 const express = require("express");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const colors = require("colors");
+const methodOverride = require("method-override");
+const connectDB = require("./config/db");
+
+dotenv.config({ path: "./config/config.env" });
+
+connectDB();
 
 const articleRoutes = require("./routes/articles");
 const ExpressError = require("./utils/ExpressError");
@@ -11,6 +16,9 @@ const app = express();
 const PORT = 3000;
 
 app.set("view engine", "ejs");
+
+app.use(express.urlencoded({extended: false}));
+app.use(methodOverride("_method"))
 
 app.use(articleRoutes);
 
